@@ -48,6 +48,18 @@ public class Controller : MonoBehaviour
         float TargetSpeed = MoveSpeed * inputDir.magnitude;
         currentSpeed = Mathf.SmoothDamp(currentSpeed, TargetSpeed, ref speedVelocity, 0.1f);
 
+
+        if (inputDir.magnitude > 0)
+        {
+
+            GetComponent<AnimationScript>().PlayRunAnimation();
+        }
+        else {
+
+            GetComponent<AnimationScript>().PlayStandAnimation();
+        }
+
+
         transform.Translate(transform.forward * currentSpeed * Time.deltaTime, Space.World);
        
 
