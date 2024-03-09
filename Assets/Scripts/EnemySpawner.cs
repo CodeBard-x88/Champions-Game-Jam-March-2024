@@ -1,45 +1,53 @@
 using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.UIElements;
 
 public class EnemySpawner : MonoBehaviour
 {
-    public GameObject enemyPrefab; // The enemy prefab to spawn
-    public List<Transform> spawnPoints; // List of spawn points
-    public float respawnTime = 3f; // Time before respawning enemy
+    [SerializeField]
+    private GameObject enemyPrefab;
+
+    [SerializeField]
+    private GameObject[] spawnPoints;
+
+    [SerializeField]
+    private int total_Waves;
+
+    [System.Serializable]
+    public struct Waves {
+        public int waveNumber;
+        public int total_Enemies; }
+
+    [SerializeField]
+    public Waves[] waves;
+    private int current_Wave;
 
     private void Start()
     {
-        // Start spawning enemies
-        StartCoroutine(SpawnEnemies());
+        current_Wave = 0;
     }
 
-    IEnumerator SpawnEnemies()
+    private void Update()
     {
-        while (true)
+        if (current_Wave < waves.Length)
         {
-            foreach (Transform spawnPoint in spawnPoints)
+            GameObject[] enemies = GameObject.FindGameObjectsWithTag("Enemy");
+            if (enemies.Length == 0)
             {
-                // Check if the spawn point is free (no enemy spawned on it)
-                Collider[] colliders = Physics.OverlapSphere(spawnPoint.position, 0.1f);
-                bool isSpawnPointFree = true;
-                foreach (Collider collider in colliders)
+                int i = 0, count = 0;
+                for (; count < waves[current_Wave].total_Enemies; i++)
                 {
-                    if (collider.CompareTag("Enemy"))
-                    {
-                        isSpawnPointFree = false;
-                        break;
-                    }
+                    GameObject enemy = Instantiate(enemyPrefab, spawnPoints[i].transform.position, spawnPoints[i].transform.localRotation);
+                    i++;
+                    count++;
+                    if (i >= spawnPoints.Length) i = 0;
                 }
-
-                // If spawn point is free, spawn a new enemy
-                if (isSpawnPointFree)
-                {
-                    Instantiate(enemyPrefab, spawnPoint.position, spawnPoint.rotation);
-                }
+                current_Wave++;
             }
-
-            yield return new WaitForSeconds(respawnTime);
         }
     }
+
+
+
 }

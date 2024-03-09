@@ -7,6 +7,11 @@ TagManager:
   - Enemy
   - Wall
   - Pickup
+<<<<<<< Updated upstream
+=======
+  - Treasure
+  - ship
+>>>>>>> Stashed changes
   layers:
   - Default
   - TransparentFX
@@ -14,8 +19,13 @@ TagManager:
   - Ground
   - Water
   - UI
+<<<<<<< Updated upstream
   - Player
   - 
+=======
+  - Treasure
+  - Player
+>>>>>>> Stashed changes
   - 
   - 
   - 
