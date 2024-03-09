@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.11432002, g: 0.191248, b: 0.23227188, a: 1}
+  m_IndirectSpecularColor: {r: 0.113692515, g: 0.19059312, b: 0.23226285, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -3767,6 +3767,7 @@ GameObject:
   - component: {fileID: 578094886}
   - component: {fileID: 578094885}
   - component: {fileID: 578094884}
+  - component: {fileID: 578094887}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: Untagged
@@ -3848,6 +3849,27 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 7.307, y: 0, z: 0}
+--- !u!95 &578094887
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 578094883}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: e214d543feb89a24c9be1cb74f3402b6, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1001 &580270354
 PrefabInstance:
   m_ObjectHideFlags: 0
