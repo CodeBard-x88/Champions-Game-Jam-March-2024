@@ -3967,6 +3967,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 28ac81b967e3af647a58169b4ca8917b, type: 3}
+--- !u!1 &400109066 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1103786686026924, guid: 28ac81b967e3af647a58169b4ca8917b, type: 3}
+  m_PrefabInstance: {fileID: 400109065}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &429472964
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5699,14 +5704,16 @@ MonoBehaviour:
     m_Bits: 16
   m_UseGeometry: 0
   m_DefaultArea: 0
+  m_GenerateLinks: 0
   m_IgnoreNavMeshAgent: 1
   m_IgnoreNavMeshObstacle: 1
   m_OverrideTileSize: 0
   m_TileSize: 256
   m_OverrideVoxelSize: 0
   m_VoxelSize: 0.16666667
-  m_BuildHeightMesh: 0
+  m_MinRegionArea: 2
   m_NavMeshData: {fileID: 23800000, guid: 2136369ff0f7f8a43a26c34f3fa1d594, type: 2}
+  m_BuildHeightMesh: 0
 --- !u!4 &676563636
 Transform:
   m_ObjectHideFlags: 0
@@ -12483,6 +12490,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 4fe7ec1d555ab494d836addf3c4b2c0f, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1504677485}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 4fe7ec1d555ab494d836addf3c4b2c0f, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1504677486}
   m_SourcePrefab: {fileID: 100100000, guid: 4fe7ec1d555ab494d836addf3c4b2c0f, type: 3}
 --- !u!4 &1504677482 stripped
 Transform:
@@ -12538,6 +12548,19 @@ NavMeshAgent:
   m_BaseOffset: 0
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
+--- !u!114 &1504677486
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1504677483}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dc6b2f0718fb0d447b8911a3da0790ce, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  shipTarget: {fileID: 400109066}
 --- !u!1001 &1518711442
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -28235,7 +28258,6 @@ SceneRoots:
   - {fileID: 268649630}
   - {fileID: 991726585}
   - {fileID: 1198939946}
-  - {fileID: 400109065}
   - {fileID: 38946022}
   - {fileID: 217815604}
   - {fileID: 390881059}
@@ -28292,3 +28314,4 @@ SceneRoots:
   - {fileID: 1538952640}
   - {fileID: 1568853790}
   - {fileID: 2000523991}
+  - {fileID: 400109065}
