@@ -5,41 +5,39 @@ using UnityEngine;
 public class CameraController : MonoBehaviour
 {
     public float RotationSensitivity = 5f;
-    public float DistanceFromTarget = 8f;
     public bool MobileController = false;
     public FixedJoystick joystick;
 
-    float RotationMin = -40f;
-    float RotationMax = 80f;
-    float smoothTime = 0.12f;
+    public Vector2 RotationLimits = new Vector2(-40f, 80f);
+    public float DistanceFromTarget = 8f;
+    public Vector3 CameraOffset = new Vector3(0f, 0f, 0f);
+
+    private float currentYaxis;
+    private float currentXaxis;
+    private Vector3 currentVel;
 
     public Transform target;
-
-    float Yaxis;
-    float Xaxis;
-    Vector3 currentVel;
-
     public FixedTouchField touchField;
 
     void LateUpdate()
     {
         if (MobileController)
         {
-            Yaxis += touchField.TouchDist.x * RotationSensitivity;
-            Xaxis += touchField.TouchDist.y * RotationSensitivity;
+            currentYaxis += touchField.TouchDist.x * RotationSensitivity;
+            currentXaxis -= touchField.TouchDist.y * RotationSensitivity;
         }
         else
         {
-            Yaxis += Input.GetAxis("Mouse X") * RotationSensitivity;
-            Xaxis -= Input.GetAxis("Mouse Y") * RotationSensitivity;
+            currentYaxis += Input.GetAxis("Mouse X") * RotationSensitivity;
+            currentXaxis -= Input.GetAxis("Mouse Y") * RotationSensitivity;
         }
-        Xaxis = Mathf.Clamp(Xaxis, RotationMin, RotationMax);
+        currentXaxis = Mathf.Clamp(currentXaxis, RotationLimits.x, RotationLimits.y);
 
-        Vector3 targetRotation = new Vector3(Xaxis, Yaxis);
+        Vector3 targetRotation = new Vector3(currentXaxis, currentYaxis);
         transform.eulerAngles = targetRotation;
 
-        Vector3 newPosition = target.position - transform.forward * DistanceFromTarget;
+        Vector3 newPosition = target.position - transform.forward * DistanceFromTarget + CameraOffset;
 
-        transform.position = Vector3.SmoothDamp(transform.position, newPosition, ref currentVel, smoothTime);
+        transform.position = Vector3.SmoothDamp(transform.position, newPosition, ref currentVel, Time.deltaTime);
     }
 }
