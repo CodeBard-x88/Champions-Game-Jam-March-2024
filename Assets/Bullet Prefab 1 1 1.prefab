@@ -62,8 +62,6 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
   m_RayTraceProcedural: 0
-  m_RayTracingAccelStructBuildFlagsOverride: 0
-  m_RayTracingAccelStructBuildFlags: 1
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -123,7 +121,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 40
-  impactEffect: {fileID: 1591225573581111051, guid: ad91a4c54ef7ba345b02f8ff5517b9ea, type: 3}
+  impactEffect: {fileID: 1319286667226607889, guid: 806b63b741ee4f44283eb8700dec0b18, type: 3}
   destroySound: {fileID: 8300000, guid: 5dbc74a65da58144aa0a20190bcd4909, type: 3}
 --- !u!82 &253969657940823763
 AudioSource:
@@ -136,7 +134,6 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 5dbc74a65da58144aa0a20190bcd4909, type: 3}
-  m_Resource: {fileID: 8300000, guid: 5dbc74a65da58144aa0a20190bcd4909, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1

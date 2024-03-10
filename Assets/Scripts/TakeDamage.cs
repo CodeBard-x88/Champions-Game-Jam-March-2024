@@ -8,7 +8,6 @@ public class TakeDamage : MonoBehaviour
     private int currentHealth;
 
     public HealthBarScript healthBar; // Reference to the health bar script
-    public Canvas gameover;
     private void Start()
     {
         currentHealth = maxHealth;
@@ -36,8 +35,5 @@ public class TakeDamage : MonoBehaviour
     void Die()
     {
         Destroy(gameObject);
-        gameover.enabled = true;
-        Time.timeScale = 0f;
-
     }
 }
