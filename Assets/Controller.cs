@@ -141,10 +141,10 @@ public class Controller : MonoBehaviour
             if(fireGun!=null)
             { fireGun.SetActive(true); }
 
-            if (backGun != null){
+            //if (backGun != null){
             
-                backGun.SetActive(false);
-            }
+            //    backGun.SetActive(false);
+            //}
 
             if (!shootSound.isPlaying)
             {

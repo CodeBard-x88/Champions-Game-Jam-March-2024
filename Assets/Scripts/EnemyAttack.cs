@@ -1,95 +1,76 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
+
 public class EnemyAttack : MonoBehaviour
 {
     private NavMeshAgent agent;
-
-    [SerializeField]
-    LayerMask whatisGround, whatisPlayer;
-    [SerializeField]
-    private float timebetweenAttacks;
-    [SerializeField]
-    private float attackRange;
-    [SerializeField]
-    private float minSpeed;
-    [SerializeField]
-    private float maxSpeed;
-    [SerializeField]
-    private float health;
-[SerializeField]
-GameObject bullet_prefab;
-    
+    private Transform playerTransform;
     private Transform treasure;
-    private bool alreadyAttacked, playerinAttackRnage;
-    private Transform player;
-private Transform bullet_spawn_point;
     private Animator animator;
-    private  void Start()
+
+    public float range = 15f;
+    public float shootingCooldown = 1f;
+    private float nextShootTime;
+
+    public GameObject bulletPrefab;
+    public Transform firePoint;
+
+    private void Start()
     {
         agent = GetComponent<NavMeshAgent>();
-        player = GameObject.FindGameObjectWithTag("Player").transform;
         treasure = GameObject.FindGameObjectWithTag("Treasure").transform;
-        animator = GetComponent<Animator>();  
-        bullet_spawn_point = GameObject.FindGameObjectWithTag("enemyfirepoint").transform;
+        animator = GetComponent<Animator>();
+        playerTransform = GameObject.FindGameObjectWithTag("PlayerPos").transform; // Assuming player is tagged as "Player"
     }
-    
+
+    private void Update()
+    {
+        if (playerTransform != null)
+        {
+            if (IsPlayerInRange() && Time.time >= nextShootTime)
+            {
+                Shoot(playerTransform);
+                nextShootTime = Time.time + shootingCooldown;
+            }
+            else
+            {
+                MovetoTreasure();
+            }
+        }
+    }
+
     private void MovetoTreasure()
     {
         animator.SetBool("isRunning", true);
         animator.SetBool("isFiring", false);
-	Debug.Log("Moving to treasure");
         agent.SetDestination(treasure.position);
     }
 
-    void AttackPlayer()
+    private bool IsPlayerInRange()
     {
-        agent.SetDestination(player.position);
-        transform.LookAt(player);
+        float distanceToPlayer = Vector3.Distance(transform.position, playerTransform.position);
+        return distanceToPlayer <= range;
+    }
+
+    private void Shoot(Transform target)
+    {
+        GameObject bulletGameObject = Instantiate(bulletPrefab, firePoint.position, firePoint.rotation);
+        EnemyBullet bullet = bulletGameObject.GetComponent<EnemyBullet>();
+
+        if (bullet != null)
+        {
+            bullet.Seek(target);
+        }
+
+        agent.SetDestination(transform.position); // Stop movement while shooting
+        transform.LookAt(target);
         animator.SetBool("isRunning", false);
         animator.SetBool("isFiring", true);
-        Instantiate(bullet_prefab,bullet_spawn_point.position,bullet_spawn_point.rotation);
-        Debug.Log("Attacking Player");
-        if (!alreadyAttacked)
-        {
-            alreadyAttacked = true;
-            Invoke(nameof(ResetAttack), timebetweenAttacks);
-        }
-    }
-
-    private void ResetAttack()
-    {
-        alreadyAttacked = false;
-    }
-
-    void Update()
-    {
-        if(health == 0)
-        {
-            animator.SetBool("isDying", true);
-            Destroy(gameObject);
-        }
-
-        playerinAttackRnage = Physics.CheckSphere(transform.position, attackRange, whatisPlayer);
-
-        if (playerinAttackRnage) AttackPlayer();
-        else
-        {
-            MovetoTreasure();
-        }
-    }
-
-    private void TakeDamage(int damage)
-    {
-        health -= damage;
-        if (health < 0)
-            health = 0;
     }
 
     private void OnDrawGizmosSelected()
     {
         Gizmos.color = Color.red;
-        Gizmos.DrawWireSphere(transform.position, attackRange);
+        Gizmos.DrawWireSphere(transform.position, range);
     }
 }
