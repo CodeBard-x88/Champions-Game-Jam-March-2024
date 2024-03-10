@@ -1,37 +1,37 @@
 using UnityEngine;
 using UnityEngine.UI;
-using UnityEngine.EventSystems;
+using System.Collections;
 
-public class ButtonPressed : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
+public class CustomButton : MonoBehaviour
 {
-    private Button button;
-
-    private bool buttonPressed = false;
-
     public Controller control;
+    private bool buttonPressed = false;
+    private bool canShoot = true;
 
-    private void Start()
+    public void PressButton()
     {
-        button = GetComponent<Button>();
-    }
-
-    public void OnPointerDown(PointerEventData eventData)
-    {
-        if (eventData.pointerId == -1 && button.interactable) 
+        if (!buttonPressed && canShoot)
         {
             control.isShooting = true;
             buttonPressed = true;
             Debug.Log("Button Pressed");
+
+            StartCoroutine(DelayBeforeRelease());
         }
     }
 
-    public void OnPointerUp(PointerEventData eventData)
+    IEnumerator DelayBeforeRelease()
     {
-        if (eventData.pointerId == -1 && buttonPressed) 
-        {
-            control.isShooting = false;
-            buttonPressed = false;
-            Debug.Log("Button Released");
-        }
+        canShoot = false;
+        yield return new WaitForSeconds(0.1f);
+        ReleaseButton();
+        canShoot = true;
+    }
+
+    public void ReleaseButton()
+    {
+        control.isShooting = false;
+        buttonPressed = false;
+        Debug.Log("Button Released");
     }
 }

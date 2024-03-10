@@ -3,12 +3,7 @@ guid: f1128cc7fdc95be4e86bf95032252020
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable: []
-  externalObjects:
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: pirate_flag
-    second: {fileID: 2100000, guid: 6cc26fcbc254fd348a89e2b3a98eeb79, type: 2}
+  externalObjects: {}
   materials:
     materialImportMode: 2
     materialName: 0
