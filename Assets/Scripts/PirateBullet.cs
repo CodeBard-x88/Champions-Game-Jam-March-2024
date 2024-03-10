@@ -9,7 +9,7 @@ public class PirateBullet : MonoBehaviour
 
     void Start()
     {
-        initialPosition = GameObject.FindGameObjectWithTag("enemybulletpoint").transform.position;
+        initialPosition = GameObject.FindGameObjectWithTag("enemyfirepoint").transform.position;
     }
 
     void Update()

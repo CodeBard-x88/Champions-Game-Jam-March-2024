@@ -16,7 +16,7 @@ public class EnemyAttack : MonoBehaviour
     private float minSpeed;
     [SerializeField]
     private float maxSpeed;
-    
+    [SerializeField]
     private float health;
 [SerializeField]
 GameObject bullet_prefab;
@@ -31,8 +31,8 @@ private Transform bullet_spawn_point;
         agent = GetComponent<NavMeshAgent>();
         player = GameObject.FindGameObjectWithTag("Player").transform;
         treasure = GameObject.FindGameObjectWithTag("Treasure").transform;
-        animator = GetComponent<Animator>();
-bullet_spawn_point = GameObject.FindGameObjectWithTag("enemyfirepoint").transform;
+        animator = GetComponent<Animator>();  
+        bullet_spawn_point = GameObject.FindGameObjectWithTag("enemyfirepoint").transform;
     }
     
     private void MovetoTreasure()
@@ -49,7 +49,7 @@ bullet_spawn_point = GameObject.FindGameObjectWithTag("enemyfirepoint").transfor
         transform.LookAt(player);
         animator.SetBool("isRunning", false);
         animator.SetBool("isFiring", true);
-Instantiate(bullet_prefab,bullet_spawn_point.position,bullet_spawn_point.rotation);
+        Instantiate(bullet_prefab,bullet_spawn_point.position,bullet_spawn_point.rotation);
         Debug.Log("Attacking Player");
         if (!alreadyAttacked)
         {
