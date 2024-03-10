@@ -30,6 +30,9 @@ public class Controller : MonoBehaviour
     public AudioSource shootSound;
     public bool isShooting = false;
 
+    public GameObject backGun;
+    public GameObject fireGun;
+
 
 
 
@@ -107,6 +110,10 @@ public class Controller : MonoBehaviour
         {
 
             GetComponent<AnimationScript>().PlayStandAnimation();
+            if (fireGun != null)
+            {
+                fireGun.SetActive(false);
+            }
         }
 
 
@@ -131,6 +138,14 @@ public class Controller : MonoBehaviour
         if (isShooting)
         {
 
+            if(fireGun!=null)
+            { fireGun.SetActive(true); }
+
+            if (backGun != null){
+            
+                backGun.SetActive(false);
+            }
+
             if (!shootSound.isPlaying)
             {
                 shootSound.Play();
@@ -154,6 +169,10 @@ public class Controller : MonoBehaviour
         else{
 
             shootSound.Stop();
+            if (fireGun != null)
+                fireGun.SetActive(false);
+            if (backGun != null)
+                backGun.SetActive(true);
         }
         
     }

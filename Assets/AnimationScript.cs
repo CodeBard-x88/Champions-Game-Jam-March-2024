@@ -13,6 +13,10 @@ public class AnimationScript : MonoBehaviour
     {
         animator.SetTrigger("Run");
     }
+    public void PlayRunningAnimation() {
+
+        animator.SetTrigger("Running");
+    }
 
     public void PlayReloadAnimation()
     {
