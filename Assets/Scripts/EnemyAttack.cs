@@ -35,7 +35,7 @@ public class EnemyAttack : MonoBehaviour
     {
         animator.SetBool("isRunning", true);
         animator.SetBool("isFiring", false);
-
+	Debug.Log("Moving to treasure");
         agent.SetDestination(treasure.position);
     }
 
@@ -45,7 +45,7 @@ public class EnemyAttack : MonoBehaviour
         transform.LookAt(player);
         animator.SetBool("isRunning", false);
         animator.SetBool("isFiring", true);
-        agent.speed = Random.Range(minSpeed, maxSpeed);
+        //agent.speed = Random.Range(minSpeed, maxSpeed);
         Debug.Log("Attacking Player");
         if (!alreadyAttacked)
         {
