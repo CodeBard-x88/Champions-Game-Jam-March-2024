@@ -3,29 +3,16 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags:
-  - Enemy
-  - Wall
-  - Pickup
-<<<<<<< Updated upstream
-=======
-  - Treasure
-  - ship
->>>>>>> Stashed changes
+  tags: []
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - Ground
+  - 
   - Water
   - UI
-<<<<<<< Updated upstream
-  - Player
   - 
-=======
-  - Treasure
-  - Player
->>>>>>> Stashed changes
+  - 
   - 
   - 
   - 
