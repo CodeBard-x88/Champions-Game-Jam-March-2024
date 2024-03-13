@@ -34,7 +34,6 @@ public class EnemyBullet : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            Debug.Log("BULLET HIT PLAYER");
             other.GetComponent<TakeDamage>().TakeDamageForPlayer(5);
             DestroyBullet();
         }
